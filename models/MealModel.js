@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const foodItem = require('../models/MealModel');
 
 const MealSchema = new mongoose.Schema(
   {
@@ -10,10 +11,9 @@ const MealSchema = new mongoose.Schema(
         type: [String],
         enum: ['Breakfast', 'Lunch', 'Evening Snack','Dinner'],
       },
-      fooditems : {  // will store food items id here
-        type : Array,
-        default : [],
-      }
+      fooditems : [{  // will store food items id here
+        type: mongoose.Schema.Types.ObjectId, ref: 'FoodItem'
+      }]
   }
 );
 
