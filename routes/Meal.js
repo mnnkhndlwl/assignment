@@ -12,4 +12,19 @@ router.post('/add_meal', async (req, res) => {
     }
 });
 
+//UPDATE Meal
+router.patch("/:id", async (req, res) => {   
+        try {
+          const updatedMeal = await Meal.findByIdAndUpdate(
+            req.params.id,
+              req.body,
+            { new: true }
+          );
+          res.status(200).json(updatedMeal);
+        } catch (err) {
+          res.status(500).json(err);
+          console.log(err);
+        }
+  });
+
 module.exports = router;
