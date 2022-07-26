@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Meal = require('../models/MealModel');
 
 const UserSchema = new mongoose.Schema(
   {
@@ -8,16 +9,15 @@ const UserSchema = new mongoose.Schema(
       },
       calorieRequirement : {
         type : Number,
-        default: 0,
+        default : 0,
       },
       meal : {
         date : {
             type : Date,
         },
-        meals: {
-            type : Array,
-            default : []
-        }
+        MealPlan : [{  // will store food items id here
+          type: mongoose.Schema.Types.ObjectId, ref: 'Meal'
+        }]
       },
   }
 );
